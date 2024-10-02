@@ -1,0 +1,66 @@
+.App {
+    font-family: Arial, sans-serif;
+    padding-top: 20px;
+  }
+  
+  .filter-menu {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  
+  .grouping, .ordering {
+    display: flex;
+    align-items: center;
+  }
+  
+  select {
+    margin-left: 10px;
+  }
+  
+  .kanban-board {
+    display: flex;
+    gap: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .kanban-column {
+    flex: 1;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .column-header{
+    display: flex;
+    /* justify-content: space-between; */
+  }
+
+  .left-header{
+    display: flex;
+    align-items: center;
+  }
+  .left-header h3{
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .left-header h4{
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .right-header{
+    display: flex;
+    align-items: center;
+    margin-left: 200px;
+    gap: 10px
+  }
+  .column-header h4{
+    color: #666;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  
