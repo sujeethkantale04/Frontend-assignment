@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import '../../public/cardstyle.css'
 
 // Priority Icons
@@ -21,6 +21,8 @@ import inProgressIcon from '../assets/in-progress.svg';
 import doneIcon from '../assets/Done.svg'; 
 import canceledIcon from '../assets/Cancelled.svg'; 
 import backlogIcon from '../assets/Backlog.svg';
+
+import profileIcon from '../assets/profile-picture.png';
 
 const statusIcons = {
     Todo: todoIcon,
@@ -46,14 +48,31 @@ const Card = ({ ticket, groupBy }) => {
         return statusIcons[status];
     }
   }
+  const profileHandler = () => {
+    if(groupBy === 'user'){
+        return false;
+    }
+    return true;
+    
+  }
+  const LimitedText = ({ charLimit }) => {
+    // Limit the number of characters and add ellipsis if exceeded
+    const truncatedText = title.length > charLimit ? title.slice(0, charLimit) + '...' : title;
+    return <h3 className="task-title">{truncatedText}</h3>;
+  };
+  
+
 
   return (
     <div className="task-card">
         <div className="task-header">
             <span className = "task-idx">{id}</span>
-            {/* <img src={avatar} alt="User profile" className="task-avatar" /> Give the image */}
+            {profileHandler() ? <img src={profileIcon} alt="User profile" className="task-avatar" /> : <span></span> }
         </div>
-        <h3 className="task-title">{title}</h3>
+        <LimitedText charLimit={50}/>
+        <h3 className="task-title">
+            
+        </h3>
         <div className = "task-footer">
             <img src={getImage()} alt="image" className="box" />
             <div className="box">

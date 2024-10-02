@@ -4,6 +4,7 @@ import Card from './Card';
 // Import other Icons
 import addIcon from '../assets/add.svg'  
 import dotIcon from '../assets/3 dot menu.svg'  
+import profileIcon from '../assets/profile-picture.png';
 
 // Priority Icons
 import noPriorityIcon from '../assets/No-priority.svg'  
@@ -36,7 +37,7 @@ const statusIcons = {
 
 
 
-const KanbanBoard = ({ tickets, groupBy, orderBy }) => {
+const KanbanBoard = ({ tickets, users, groupBy, orderBy }) => {
   // Function to group and order tickets
   const groupTickets = (tickets) => {
     let groupedTickets = {};
@@ -80,11 +81,21 @@ const KanbanBoard = ({ tickets, groupBy, orderBy }) => {
         }
         return statusIcons[group];
     }else if(groupBy == 'user'){
-        return priorityIcons[group];
+        return profileIcon;
     }else if(groupBy == 'priority'){
         return priorityIcons[group];
     }
   }
+
+  function getNameById(userId) {
+    // Find the user with the given id
+    const user = users.find(user => user.id === userId);
+    
+    // If user is found, return the name, else return 'User not found'
+    return user ? user.name : 'User not found';
+  }
+  
+
   const getName = (group) => {
     if(group == 0){
         return "No Priority"
@@ -97,7 +108,10 @@ const KanbanBoard = ({ tickets, groupBy, orderBy }) => {
     }else if(group == 4){
         return "Urgent";
     }else if(group == "In progress"){
-        return "In Progress";
+        return "Inprogress";
+    }else if(groupBy == 'user'){
+        const user = users.find(user => user.id === group);
+        return user.name;
     }
     return group;
   }
@@ -108,7 +122,6 @@ const KanbanBoard = ({ tickets, groupBy, orderBy }) => {
             <div className='column-header'>
                 <div className='left-header'>
                     <img src={getImage(group)} alt='image'></img>
-                    {/* <h3>{group}</h3> */}
                     <h3>{getName(group)}</h3>
                     <h4>{groupedTickets[group].length}</h4>
                 </div>

@@ -5,6 +5,7 @@ import './index.css';
 
 function App() {
   const [tickets, setTickets] = useState([]);
+  const [users, setUsers] = useState([]);
   const [groupBy, setGroupBy] = useState('status');
   const [orderBy, setOrderBy] = useState('priority');
 
@@ -19,7 +20,16 @@ function App() {
         console.error("Error fetching tickets", error);
       }
     };
-
+    const fetchUsers = async () => {
+        try {
+          const response = await fetch('https://api.quicksell.co/v1/internal/frontend-assignment');
+          const data = await response.json();
+          setUsers(data.users);
+        } catch (error) {
+          console.error("Error fetching tickets", error);
+        }
+      };
+    fetchUsers();
     fetchTickets();
   }, []);
 
@@ -39,7 +49,7 @@ function App() {
         onGroupChange={handleGroupingChange} 
         onOrderChange={handleOrderingChange} 
       />
-      <KanbanBoard tickets={tickets} groupBy={groupBy} orderBy={orderBy} />
+      <KanbanBoard tickets={tickets} users = {users} groupBy={groupBy} orderBy={orderBy} />
     </div>
   );
 }

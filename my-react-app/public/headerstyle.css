@@ -72,6 +72,7 @@
   .display-box{
     height: fit-content;
     width:fit-content;
+    margin-left: 20px;
     border: 1px solid #bbb;
     padding: 5px 0px;
     border-radius: 4px;
